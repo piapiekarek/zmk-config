@@ -1,24 +1,18 @@
-# This file generates the GitHub Actions matrix.
-# For simple board + shield combinations, add them to the top level board and
-# shield arrays, for more control, add individual board + shield combinations
-# to the `include` property. You can also use the `cmake-args` property to
-# pass flags to the build command and `artifact-name` to assign a name to
-# distinguish build outputs from each other:
-#
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#   - board: nice_nano_v2
-#     shield: corne_left
-#     cmake-args: -DCONFIG_ZMK_USB_LOGGING=y
-#     artifact-name: corne_left_with_logging
-#
----
-include:
-  - board: nice_nano_v2
-    shield: splitkb_aurora_corne_left
-  - board: nice_nano_v2
-    shield: splitkb_aurora_corne_right
+board: pico       # Dein Board (RP2040-basierend, z.B. Pi Pico v1)
+shield: none      # Kein spezielles Keyboard-Shield, da du eigenes Overlay nutzt
+
+build:
+  # Lege hier weitere Build-Optionen fest falls nötig, z.B. Debug, Release
+
+  type: application
+  name: keyboard_rp2040
+
+  # Die Konfigurationsdateien mit deiner Keymap und anderen Einstellungen
+  overlays:
+    - config/boards/pico/pico.overlay  # Deine Overlay Datei mit Matrix und LEDs
+    - config/keymaps/keyboard_rp2040.keymap  # Deine custom Keymap Datei
+
+  # Die zentrale Konfigurationsdatei (deine .conf Datei),
+  # welche board, shield, keymap etc. referenziert
+  configuration:
+    - config/keyboard_rp2040.conf
