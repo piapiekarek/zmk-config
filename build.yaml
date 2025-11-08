@@ -1,4 +1,4 @@
-board: raspberry_pico       # Dein Board (RP2040-basierend, z.B. Pi Pico v1)
+board: sparkfun_pro_micro_rp2040       # Dein Board (RP2040-basierend, z.B. Pi Pico v1)
 shield: none      # Kein spezielles Keyboard-Shield, da du eigenes Overlay nutzt
 
 build:
